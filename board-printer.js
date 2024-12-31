@@ -16,6 +16,12 @@
     Test your function by calling it with an example tic-tac-toe board.
 */
 export function printBoard(board) {
+  return board
+    .map(
+      (row) => row.map((ele) => ` ${ele} `).join(" ")
+      //
+    )
+    .join("\n==========\n");
 }
 
 /*
@@ -24,4 +30,11 @@ export function printBoard(board) {
         - return false if there are still moves that can be made
 */
 export function checkIfNoMovesLeft(board) {
+  if (Array.isArray(board)) {
+    let makeItFlat = board.flat();
+    const canMove = makeItFlat.includes("_");
+    return canMove;
+  } else {
+    return "Make sure Array Board is Array";
+  }
 }
