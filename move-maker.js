@@ -15,22 +15,59 @@
             ['O', 'O', 'X']
         ];
 */
-function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
+// function validateMove(move, board) {
+//     // Implement this at the end if you have time, otherwise you can help your teammates!
+//     return true;
+// }
+
+// /*
+//     Given 3 parameters:
+//         - a board (an array of arrays)
+//         - a move (2 numbers separated by a comma)
+//         - a player ('X' or 'O'):
+//     Check that the move is valid using the validateMove function.
+//         If the move is not valid, the function should just return false.
+//         If the move is valid, the function should:
+//             - Update the board with the player's value ('X' or 'O') in the correct position
+//             - Return true
+// */
+// export function makeMove(board, move, player) {
+//     return false;
+// }
+export function validateMove(move, board) {
+    // Your validateMove implementation
+    let [row, col] = move.split(',').map(Number);
+
+    // Check if row and col are valid
+    if (row < 1 || row > 3 || col < 1 || col > 3) {
+        console.log('Try again...');
+        return false;
+    }
+
+    // Adjust for 0-based indexing
+    row -= 1;
+    col -= 1;
+
+    // Check if the space is empty
+    if (board[row][col] !== '_') {
+        console.log('Try again...');
+        return false;
+    }
+
     return true;
 }
 
-/*
-    Given 3 parameters:
-        - a board (an array of arrays)
-        - a move (2 numbers separated by a comma)
-        - a player ('X' or 'O'):
-    Check that the move is valid using the validateMove function.
-        If the move is not valid, the function should just return false.
-        If the move is valid, the function should:
-            - Update the board with the player's value ('X' or 'O') in the correct position
-            - Return true
-*/
 export function makeMove(board, move, player) {
-    return false;
+    if (!validateMove(move, board)) {
+        return false;
+    }
+
+    let [row, col] = move.split(',').map(Number);
+
+    // Adjust for 0-based indexing
+    row -= 1;
+    col -= 1;
+
+    board[row][col] = player;
+    return true;
 }
